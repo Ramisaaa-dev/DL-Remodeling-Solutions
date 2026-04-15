@@ -6,7 +6,7 @@
 :root{
   --nav-bg:#2e3a59;        /* nav bar background */
   --header-bg:#2e3a59;     /* header + footer color */
-  --accent:#c47a1b;        /* main highlight color (buttons, borders) */
+  --accent: darkgoldenrod;        /* main highlight color (buttons, borders) */
   --page-bg:#f9f9fb;       /* page background */
   --text:#333;             /* default text color */
   --card-width:340px;      /* standard card size */
@@ -245,20 +245,101 @@ main{
   margin:auto; /* center content */
 }
 
-
 /* ===============================
-   SERVICES (CARD LAYOUT)
+   (CARD LAYOUT)
    =============================== */
 
 .services{
   display:flex;
   justify-content:center;
+  flex-direction:column;
   gap:2rem;
   margin-top:2rem;
   flex-wrap:wrap; /* wraps on smaller screens */
 }
+.services-card{
+  position: relative;
+  color: white;
+  overflow: hidden;
+  align-self:flex-start; /* pushes it to the LEFT */
+  width:80%; /* takes most of the row */
+}
 
+/* background images layer */
+.services-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
 
+  background-size:cover;
+  background-position:center;
+
+  animation: bgSlide 15s infinite;
+  z-index:0;
+}
+
+/* dark overlay */
+.services-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  z-index:1;
+}
+
+/* keep text above */
+.services-card *{
+  position:relative;
+  z-index:2;
+}
+
+@keyframes bgSlide{
+  0%{
+    background-image:url("https://i.etsystatic.com/8520095/r/il/9abeb6/943018642/il_1588xN.943018642_e6nv.jpg");
+  }
+  33%{
+    background-image:url("https://i.pinimg.com/originals/f0/91/8f/f0918f37ec39e85400f1d2dc27b97a3e.png");
+  }
+  66%{
+    background-image:url("https://i.pinimg.com/736x/af/eb/a3/afeba3a638cf271ce06d4eb5a8909ee6.jpg");
+  }
+  100%{
+    background-image:url("https://i.etsystatic.com/8520095/r/il/9abeb6/943018642/il_1588xN.943018642_e6nv.jpg");
+  }
+}
+.contact{
+  display:flex;
+  flex-direction:column;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Contact card (right aligned) */
+.contact-card{
+  align-self:flex-end; /* pushes it to the RIGHT */
+  width:80%; /* same width for balance */
+}
+
+.location{
+  display:flex;
+  flex-direction:column;
+  gap:.5rem;
+  flex-wrap: wrap;
+}
+.location-card{
+  align-self:flex-start; /* left aligned */
+  width:80%;
+}
+.portfolio{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  flex-wrap: wrap;
+}
+.portfolio-card{
+  align-self:flex-end; /* right aligned */
+  width:80%;
+}
 /* ===============================
    CARD (MAIN BOX COMPONENT)
    =============================== */
@@ -267,17 +348,13 @@ main{
   background:white;
   border-radius:8px;
   border-top:4px solid var(--accent);
-
   box-shadow:0 2px 8px rgba(0,0,0,.08);
   padding:3rem;
-
-  flex:1;
+  flex: 1; /* allows cards to grow equally */
   min-width:268px;
-
   display:flex;
-  flex-direction:column;
-  gap:.6rem;
-
+  flex-direction: column;
+  gap:.4rem;
   transition:.25s;
 }
 
