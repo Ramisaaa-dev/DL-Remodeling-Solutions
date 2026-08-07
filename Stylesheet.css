@@ -3,27 +3,25 @@
    =============================== */
 
 /* :root = global variables you can reuse anywhere */
-:root{
-  --nav-bg:#2e3a59;        /* nav bar background */
-  --header-bg:#2e3a59;     /* header + footer color */
-  --accent: darkgoldenrod;        /* main highlight color (buttons, borders) */
-  --page-bg:#f9f9fb;       /* page background */
-  --text:#333;             /* default text color */
-  --card-width:340px;      /* standard card size */
-  --gap:1rem;              /* spacing between elements */
+:root {
+  --nav-bg: #2e3a59; /* nav bar background */
+  --header-bg: #2e3a59; /* header + footer color */
+  --accent: darkgoldenrod; /* main highlight color (buttons, borders) */
+  --page-bg: #f9f9fb; /* page background */
+  --text: #333; /* default text color */
+  --card-width: 340px; /* standard card size */
+  --gap: 1rem; /* spacing between elements */
 }
-
 
 /* ===============================
    GLOBAL RESET / BASIC SETTINGS
    =============================== */
 
 /* applies to EVERYTHING */
-*{
-  box-sizing:border-box; /* keeps padding inside width (VERY IMPORTANT) */
+* {
+  box-sizing: border-box; /* keeps padding inside width (VERY IMPORTANT) */
   transition: all 0.1s ease; /* smooth animations for hover, etc */
 }
-
 
 /* ===============================
    INTRO SCREEN (BLUEPRINT ANIMATION)
@@ -31,16 +29,16 @@
 
 /* full screen intro overlay */
 #intro {
-  position: fixed;   /* stays on screen */
+  position: fixed; /* stays on screen */
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;     /* full screen height */
+  height: 100vh; /* full screen height */
   background: #0d3b66; /* blueprint blue */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;     /* sits above EVERYTHING */
+  z-index: 9999; /* sits above EVERYTHING */
 }
 
 /* text that appears after house builds */
@@ -55,7 +53,7 @@
   transform: translateY(20px); /* starts slightly down */
 
   animation: textReveal 1s ease forwards;
-  animation-delay: 1.0s; /* shows AFTER animation starts */
+  animation-delay: 1s; /* shows AFTER animation starts */
 }
 
 /* animation for text fade + slide up */
@@ -127,417 +125,547 @@ body.loaded {
   overflow: auto;
 }
 
-
 /* ===============================
    BODY (MAIN PAGE SETUP)
    =============================== */
 
-body{
-  margin:0; /* remove default spacing */
-  font-family:'Segoe UI',sans-serif;
-  background-color:var(--page-bg);
-  color:var(--text);
-  line-height:1.6;
+body {
+  margin: 0; /* remove default spacing */
+  font-family: "Segoe UI", sans-serif;
+  background-color: var(--page-bg);
+  color: var(--text);
+  line-height: 1.6;
 
-  display:flex;
-  flex-direction:column; /* stack everything vertically */
-  min-height:100vh; /* full screen height */
+  display: flex;
+  flex-direction: column; /* stack everything vertically */
+  min-height: 100vh; /* full screen height */
 }
-
 
 /* ===============================
    HEADER (TOP TITLE BAR)
    =============================== */
 
-header{
-  background:var(--header-bg);
-  color:white;
-  text-align:center;
-  padding:1.25rem 1rem;
+header {
+  background: var(--header-bg);
+  color: white;
+  text-align: center;
+  padding: 1.25rem 1rem;
 }
 
-header h1{
-  margin:0;
-  font-size:1.6rem;
+header h1 {
+  margin: 0;
+  font-size: 1.6rem;
 }
-
 
 /* ===============================
    NAVIGATION BAR (LINKS)
    =============================== */
 
-.hero-nav{
-  display:flex; /* puts links in a row */
-  justify-content:center;
-  gap:.75rem;
+.hero-nav {
+  display: flex; /* puts links in a row */
+  justify-content: center;
+  gap: 0.75rem;
   padding: 0.5rem;
-  background:var(--nav-bg);
+  background: var(--nav-bg);
 }
 
 /* nav links */
-.hero-nav a{
-  color:white;
-  text-decoration:none;
-  padding:.5rem 1rem;
-  border-radius:.35rem;
-  font-size:.9rem;
+.hero-nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.35rem;
+  font-size: 0.9rem;
 
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   transition: 0.3s;
 }
 
 /* hover effect */
-.hero-nav a:hover{
-  background:rgba(255,255,255,0.25);
+.hero-nav a:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
-
 
 /* ===============================
    HERO (BIG IMAGE BANNER)
    =============================== */
 
-.hero{
-  position:relative;
+.hero {
+  position: relative;
 
   /* background image */
-  background:url("https://images.unsplash.com/photo-1565373671233-564ed7aeca45?auto=format&fit=crop&w=1400&q=60")
-  center/cover no-repeat;
+  background: url("https://images.unsplash.com/photo-1565373671233-564ed7aeca45?auto=format&fit=crop&w=1400&q=60")
+    center/cover no-repeat;
 
-  height:180px;
+  height: 180px;
 
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  color:white;
+  color: white;
 
   /* helps text readability */
-  text-shadow:0 2px 4px rgba(0,0,0,.5);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* overlay (currently invisible but useful later) */
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0);
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
 }
 
 /* hero text */
-.hero h2{
-  margin:0;
-  padding:.3rem .8rem;
-  background:rgba(0,0,0,.45);
-  border-radius:6px;
-  font-size:1.1rem;
-  position:relative;
+.hero h2 {
+  margin: 0;
+  padding: 0.3rem 0.8rem;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 6px;
+  font-size: 1.1rem;
+  position: relative;
 }
-
 
 /* ===============================
    MAIN CONTENT AREA
    =============================== */
 
-main{
-  flex:1; /* fills space between header + footer */
-  padding:2rem .5rem;
-  max-width:1600px;
-  margin:auto; /* center content */
+main {
+  flex: 1; /* fills space between header + footer */
+  padding: 1rem 2rem;
+  max-width: 1600px;
+  margin: auto; /* center content */
 }
 
 /* ===============================
    (CARD LAYOUT)
    =============================== */
-
-.services{
-  display:flex;
-  justify-content:center;
-  flex-direction:column;
-  gap:2rem;
-  margin-top:2rem;
-  flex-wrap:wrap; /* wraps on smaller screens */
+.whatwedo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
-.services-card{
+
+.whatwedo .card {
+  max-width: 1000px;
+}
+
+.services {
+  /* Makes the paragraph and card sit next to each other */
+  display: flex;
+
+  /* Pushes everything toward the right side */
+  justify-content: flex-end;
+
+  /* Space between the paragraph and the card */
+  gap: 2rem;
+
+  /* Space above this section */
+  margin-top: 2rem;
+
+  /* Allows the layout to wrap on smaller screens */
+  flex-wrap: wrap;
+}
+
+/* The services card needs position:relative because the
+   animated background (::before) is positioned absolutely.
+   Without this, the background would be positioned relative
+   to the page instead of the card. */
+
+.services-card {
   position: relative;
+
+  /* Makes text readable over the dark overlay */
   color: white;
+
+  /* Keeps the slideshow inside the card */
   overflow: hidden;
-  align-self:flex-start; /* pushes it to the LEFT */
-  width:80%; /* takes most of the row */
+
+  /* Pushes the card to the right */
+  margin-left: auto;
 }
 
-/* background images layer */
-.services-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  background-size:cover;
-  background-position:center;
-
-  animation: bgSlide 15s infinite;
-  z-index:0;
+/* Allows the paragraph to grow and fill available space */
+.services-paragraph {
+  flex: 1;
 }
+.service-title {
+  width: 140px;
+  text-align: center;
+  line-height: 1.3;
 
-/* dark overlay */
-.services-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.5);
-  z-index:1;
+  /* This centers the text beside the town list */
+  align-self: center;
 }
-
-/* keep text above */
-.services-card *{
-  position:relative;
-  z-index:2;
+.services-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  height: 100%;
 }
-
-@keyframes bgSlide{
-  0%{
-    background-image:url("https://i.etsystatic.com/8520095/r/il/9abeb6/943018642/il_1588xN.943018642_e6nv.jpg");
-  }
-  33%{
-    background-image:url("https://i.pinimg.com/originals/f0/91/8f/f0918f37ec39e85400f1d2dc27b97a3e.png");
-  }
-  66%{
-    background-image:url("https://i.pinimg.com/736x/af/eb/a3/afeba3a638cf271ce06d4eb5a8909ee6.jpg");
-  }
-  100%{
-    background-image:url("https://i.etsystatic.com/8520095/r/il/9abeb6/943018642/il_1588xN.943018642_e6nv.jpg");
-  }
+.services-card * {
+  position: relative;
+  z-index: 2;
 }
-.contact{
-  display:flex;
-  flex-direction:column;
+.contact {
+  display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
 }
 
-/* Contact card (right aligned) */
-.contact-card{
-  align-self:flex-end; /* pushes it to the RIGHT */
-  width:80%; /* same width for balance */
+.contact-card {
+  margin-right: auto;
 }
 
-.location{
-  display:flex;
-  flex-direction:column;
-  gap:.5rem;
+.contact-content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.contact-form {
+  flex: 1;
+}
+
+.location {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 4rem;
+}
+.location-card {
+  width: 80%;
+  max-width: 1100px;
+}
+.location-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.city-list {
+  flex: 1;
+}
+.city-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.city-list li {
+  margin-bottom: 12px;
+}
+.map-container {
+  flex: 2;
+}
+.map-container iframe {
+  width: 100%;
+  height: 260px;
+  border: none;
+  border-radius: 12px;
+}
+
+.portfolio {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+  margin-top: 2rem;
   flex-wrap: wrap;
 }
-.location-card{
-  align-self:flex-start; /* left aligned */
-  width:80%;
+
+.portfolio-content {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+
+  padding: 2rem;
 }
-.portfolio{
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-  flex-wrap: wrap;
+.portfolio-card {
+  position: relative;
+  color: white;
+  overflow: hidden;
 }
-.portfolio-card{
-  align-self:flex-end; /* right aligned */
-  width:80%;
+
+.whatwedo,
+.services,
+.contact,
+.portfolio {
+  margin-bottom: 4rem;
 }
 /* ===============================
    CARD (MAIN BOX COMPONENT)
    =============================== */
+/* ===============================
+   UNIVERSAL BACKGROUND SLIDESHOW
+   Works for EVERY card
+   =============================== */
+.background-slideshow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+/* Every slideshow image fills the card */
+.bg-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.8s ease-in-out;
+  transform: scale(1);
+}
+/* Only one image is visible */
+.bg-slide.active {
+  opacity: 1;
+  animation: zoom 8s linear;
+}
+.services-card::after,
+.portfolio-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 
-.card{
-  background:white;
-  border-radius:8px;
-  border-top:4px solid var(--accent);
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
-  padding:3rem;
-  flex: 1; /* allows cards to grow equally */
-  min-width:268px;
-  display:flex;
+  background: rgba(0, 0, 0, 0.45);
+
+  z-index: 1;
+}
+/* ===============================
+   BACKGROUND STAYS BEHIND CONTENT
+   =============================== */
+
+.background-slideshow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.services-content,
+.portfolio-content {
+  position: relative;
+  z-index: 2;
+}
+/* Slow zoom */
+@keyframes zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+.services-card,
+.contact-card,
+.location-card,
+.portfolio-card {
+  background: transparent;
+  padding: 0;
+}
+.services-content,
+.contact-content,
+.location-content,
+.portfolio-content {
+  padding: 3rem;
+}
+.card {
+  border-radius: 16px;
+  border-top: 4px solid var(--accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  width: 90%;
+  max-width: 1400px;
+  min-height: 380px;
+  padding: 2rem;
+
+  display: flex;
   flex-direction: column;
-  gap:.4rem;
-  transition:.25s;
+  gap: 0.4rem;
+  transition: 0.25s;
 }
 
 /* hover lift effect */
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 6px 18px rgba(0,0,0,.12);
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
-.card p{
-  line-height:1.5rem;
+.card p {
+  line-height: 1.5rem;
 }
 
-.card h3{
-  text-align:center;
+.card h3 {
+  text-align: center;
 }
 
-.card h4{
-  margin:0;
-  text-align:center;
-  color:var(--accent);
+.card h4 {
+  margin: 0;
+  text-align: center;
+  color: var(--accent);
 }
 
 /* inputs inside cards */
 .card input,
-.card textarea{
-  width:100%;
+.card textarea {
+  width: 100%;
 }
 
-.card textarea{
-  resize:none;
+.card textarea {
+  resize: none;
 }
-
 
 /* ===============================
    BUTTON
    =============================== */
 
-.SeeMore-btn{
-  display:inline-block;
-  margin-top:auto;
+.SeeMore-btn {
+  position: relative;
+  z-index: 3;
 
-  padding:.7rem 1.2rem;
-  background:var(--accent);
-  color:white;
+  display: inline-block;
+  margin-top: auto;
 
-  text-decoration:none;
-  border-radius:8px;
+  padding: 0.7rem 1.2rem;
+  background: var(--accent);
+  color: white;
 
-  font-weight:600;
-  font-size:.95rem;
-  transition:.3s;
+  text-decoration: none;
+  border-radius: 8px;
+
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: 0.3s;
 }
 
 /* hover animation */
-.SeeMore-btn:hover{
-  background:#a86514;
-  transform:scale(1.05);
+.SeeMore-btn:hover {
+  background: #a86514;
+  transform: scale(1.05);
 }
-
 
 /* ===============================
    IMAGE SLIDER
    =============================== */
 
-.slider{
-  position:relative;
-  overflow:hidden; /* hides extra images */
+.slider {
+  position: relative;
+  overflow: hidden; /* hides extra images */
 }
 
 /* track that moves */
-.slides{
-  display:flex;
-  transition:transform .5s ease;
-  width:100%;
+.slides {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
 }
 
 /* each image */
-.slide{
-  flex-shrink:0;
-  width:100%;
-  max-height:220px;
-  object-fit:contain;
-  margin:auto;
+.slide {
+  flex-shrink: 0;
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  margin: auto;
 }
-
 
 /* ===============================
    SLIDER BUTTONS
    =============================== */
 
 .prev,
-.next{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 
-  background:rgba(0,0,0,.5);
-  color:white;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
 
-  border:none;
-  font-size:22px;
-  padding:.4rem .8rem;
+  border: none;
+  font-size: 22px;
+  padding: 0.4rem 0.8rem;
 
-  cursor:pointer;
-  border-radius:4px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
-.prev{ left:10px; }
-.next{ right:10px; }
-
+.prev {
+  left: 10px;
+}
+.next {
+  right: 10px;
+}
 
 /* ===============================
    FOOTER
    =============================== */
 
-footer{
-  background:var(--header-bg);
-  color:white;
-  text-align:center;
+footer {
+  background: var(--header-bg);
+  color: white;
+  text-align: center;
 
-  padding:1rem;
-  font-size:.9rem;
-  margin-top:4rem;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: 4rem;
 }
-
 
 /* ===============================
    MOBILE (RESPONSIVE DESIGN)
    =============================== */
 
-@media (max-width:760px){
-
+@media (max-width: 760px) {
   /* stack cards instead of side-by-side */
-  .services{
-    flex-direction:column;
-    align-items:center;
+  .services {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .card{
-    width:90%;
+  .card {
+    width: 90%;
   }
-
 }
-
 
 /* ===============================
    PROJECT / GALLERY
    =============================== */
 
 /* project type layout */
-.projectType{
-  display:flex;
-  justify-content:center;
-  gap:2rem;
-  margin-top:2rem;
-  flex-wrap:wrap;
+.projectType {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
 }
 
 /* image grid */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:10px;
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.gallery img{
-  width:100%;
-  border-radius:6px;
-  height:150px;
-  object-fit:cover;
+.gallery img {
+  width: 100%;
+  border-radius: 6px;
+  height: 150px;
+  object-fit: cover;
 }
 
 /* slider container */
-#projectGallery{
-  margin-top:1rem;
-  max-width:400px;
+#projectGallery {
+  margin-top: 1rem;
+  max-width: 400px;
 }
 
 /* slider images */
-#projectGallery .slide{
-  width:100%;
-  height:220px;
-  object-fit:cover;
+#projectGallery .slide {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
 }
