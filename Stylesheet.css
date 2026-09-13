@@ -3,474 +3,526 @@
    =============================== */
 
 /* :root = global variables you can reuse anywhere */
-:root{
-  --nav-bg:#263459;        /* nav bar background */
-  --header-bg: #b4cef3;     /* header + footer color */
-  --accent: #b4cef3;       /* main highlight color (buttons, borders) */
-  --page-bg:#263459;       /* page background */
-  --text:#333;             /* default text color */
-  --card-width:340px;      /* standard card size */
-  --gap:1rem;              /* spacing between elements */
+:root {
+  --nav-bg: #2e3a59; /* nav bar background */
+  --header-bg: #2e3a59; /* header + footer color */
+  --accent: #b8aea0; /* main highlight color (buttons, borders) */
+  --page-bg: #f9f9fb; /* page background */
+  --text: #333; /* default text color */
+  --card-width: 340px; /* standard card size */
+  --gap: 1rem; /* spacing between elements */
 }
-
 
 /* ===============================
    GLOBAL RESET / BASIC SETTINGS
    =============================== */
 
 /* applies to EVERYTHING */
-*{
-  box-sizing:border-box; /* keeps padding inside width (VERY IMPORTANT) */
+* {
+  box-sizing: border-box; /* keeps padding inside width (VERY IMPORTANT) */
   transition: all 0.1s ease; /* smooth animations for hover, etc */
 }
-
-
-/* ===============================
-   INTRO SCREEN (BLUEPRINT ANIMATION)
-   =============================== */
-
-/* full screen intro overlay */
-#intro {
-  position: fixed;   /* stays fixed on the screen even when scrolling */
-  top: 0;            /* aligns to top of screen */
-  left: 0;           /* aligns to left of screen */
-  width: 100%;       /* full width of viewport */
-  height: 100vh;     /* full height of viewport */
-  background: #0d3b66; /* blueprint-style blue background */
-  display: flex;     /* enables flexbox layout */
-  justify-content: center; /* centers content horizontally */
-  align-items: center;     /* centers content vertically */
-  z-index: 9999;     /* ensures it stays above all other elements */
-}
-
-/* text that appears after house builds */
-.intro-text {
-  margin-top: 1rem; /* space above the text */
-  color: white;     /* text color */
-  font-size: 1.8rem; /* size of the text */
-  font-weight: 700;  /* makes text bold */
-  letter-spacing: 2px; /* adds spacing between letters */
-
-  opacity: 0; /* hidden at first */
-  transform: translateY(20px); /* starts slightly below its final position */
-
-  animation: textReveal 1s ease forwards; /* runs animation once and keeps final state */
-  animation-delay: 1.0s; /* waits before starting animation */
-}
-
-/* animation for text fade + slide up */
-@keyframes textReveal {
-  to {
-    opacity: 1; /* fades text in */
-    transform: translateY(0); /* moves text to original position */
-  }
-}
-
-/* SVG house size */
-.house-svg {
-  width: 200px;  /* sets width of SVG */
-  height: 200px; /* sets height of SVG */
-}
-
-/* blueprint line drawing effect */
-.line {
-  fill: none;        /* removes fill color so only outline shows */
-  stroke: white;     /* line color */
-  stroke-width: 2;   /* thickness of lines */
-
-  stroke-dasharray: 400;  /* creates dashed line pattern */
-  stroke-dashoffset: 400; /* hides the line initially */
-
-  animation: draw 2s ease forwards; /* animates the drawing effect */
-}
-
-/* line drawing animation */
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0; /* gradually reveals the line */
-  }
-}
-
-/* real house (hidden first) */
-.house-fill {
-  opacity: 0; /* invisible at start */
-  fill: #f4a261; /* fill color of the house */
-
-  animation: showHouse 1s ease forwards; /* fades in the house */
-  animation-delay: 2s; /* waits until line animation finishes */
-}
-
-/* show the house */
-@keyframes showHouse {
-  to {
-    opacity: 1; /* makes house visible */
-  }
-}
-
-/* fade out intro screen */
-#intro.fade-out {
-  animation: fadeOut 1s ease forwards; /* fades out entire intro screen */
-  animation-delay: 3s; /* starts after all animations complete */
-}
-
-/* fade animation */
-@keyframes fadeOut {
-  to {
-    opacity: 0;       /* fades out */
-    visibility: hidden; /* removes it from interaction */
-  }
-}
-
-/* allows scrolling AFTER intro finishes */
-body.loaded {
-  overflow: auto; /* re-enables scrolling after intro disappears */
-}
-
-
-
 /* ===============================
    BODY (MAIN PAGE SETUP)
    =============================== */
 
-body{
-  margin:0; /* removes default browser margin */
-  font-family:'Segoe UI',sans-serif; /* sets main font style */
-  background-color:var(--page-bg); /* uses variable for page background */
-  color:var(--text); /* uses variable for default text color */
-  line-height:1.6; /* improves readability by spacing lines */
+body {
+  margin: 0; /* remove default spacing */
+  font-family: "Segoe UI", sans-serif;
+  background-color: var(--page-bg);
+  color: var(--text);
+  line-height: 1.6;
 
-  display:flex; /* enables flexbox layout */
-  flex-direction:column; /* stacks children (header, main, footer) vertically */
-  min-height:100vh; /* ensures page always fills full screen height */
+  display: flex;
+  flex-direction: column; /* stack everything vertically */
+  min-height: 100vh; /* full screen height */
 }
-
 
 /* ===============================
    HEADER (TOP TITLE BAR)
    =============================== */
 
-header{
-  background:var(--header-bg); /* uses header background variable */
-  color:white; /* text color */
-  text-align:center; /* centers text horizontally */
-  padding:1.25rem 1rem; /* space inside header (top/bottom, left/right) */
+header {
+  background: var(--header-bg);
+  color: white;
+  text-align: center;
+  padding: 1.25rem 1rem;
 }
 
-header h1{
-  margin:0; /* removes default margin from h1 */
-  font-size:1.6rem; /* controls title size */
+header h1 {
+  margin: 0;
+  font-size: 1.6rem;
 }
-
 
 /* ===============================
    NAVIGATION BAR (LINKS)
    =============================== */
 
-.hero-nav{
-  display:flex; /* places links in a horizontal row */
-  justify-content:center; /* centers links horizontally */
-  gap:.75rem; /* space between each link */
-  padding: 0.5rem; /* space inside nav bar */
-  background:var(--nav-bg); /* nav background color */
+.hero-nav {
+  display: flex; /* puts links in a row */
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  background: var(--nav-bg);
 }
 
 /* nav links */
-.hero-nav a{
-  color:white; /* link text color */
-  text-decoration:none; /* removes underline */
-  padding:.5rem 1rem; /* space inside each link button */
-  border-radius:.35rem; /* rounded corners */
-  font-size:.9rem; /* slightly smaller text */
+.hero-nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.35rem;
+  font-size: 0.9rem;
 
-  background: rgba(255,255,255,0.1); /* subtle background for buttons */
-  transition: 0.3s; /* smooth hover animation */
+  background: rgba(255, 255, 255, 0.1);
+  transition: 0.3s;
 }
 
 /* hover effect */
-.hero-nav a:hover{
-  background:rgba(255,255,255,0.25); /* lightens background on hover */
+.hero-nav a:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
-
 
 /* ===============================
    HERO (BIG IMAGE BANNER)
    =============================== */
 
-.hero{
-  position:relative; /* allows absolute positioning inside (like overlay) */
+.hero {
+  position: relative;
+
   /* background image */
-  background:url("https://images.unsplash.com/photo-1565373671233-564ed7aeca45?auto=format&fit=crop&w=1400&q=60")
-  center/cover no-repeat; /* centers image and scales to cover area */
-  height:180px; /* sets banner height */
-  display:flex; /* enables flexbox */
-  justify-content:center; /* centers content horizontally */
-  align-items:center; /* centers content vertically */
-  color:white; /* text color */
-  text-shadow:0 2px 4px rgba(0,0,0,.5); /* adds shadow for readability */
+  background: url("https://images.unsplash.com/photo-1565373671233-564ed7aeca45?auto=format&fit=crop&w=1400&q=60")
+    center/cover no-repeat;
+
+  height: 180px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  /* helps text readability */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* overlay (currently invisible but useful later) */
-.hero::before{
-  content:""; /* required for pseudo-element */
-  position:absolute; /* positions over hero */
-  inset:0; /* stretches to cover entire hero */
-  background:rgba(0,0,0,0); /* transparent overlay (can darken later) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
 }
 
 /* hero text */
-.hero h2{
-  margin:0; /* removes default margin */
-  padding:.3rem .8rem; /* space inside text box */
-  background:rgba(0,0,0,.45); /* semi-transparent background */
-  border-radius:6px; /* rounded edges */
-  font-size:1.1rem; /* controls text size */
-  position:relative; /* ensures it sits above overlay */
+.hero h2 {
+  margin: 0;
+  padding: 0.3rem 0.8rem;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 6px;
+  font-size: 1.1rem;
+  position: relative;
 }
-
 
 /* ===============================
    MAIN CONTENT AREA
    =============================== */
 
-main{
-  flex:1; /* expands to fill available vertical space */
-  padding:2rem .5rem; /* space inside main (top/bottom, left/right) */
-  max-width:1600px; /* prevents content from getting too wide */
-  margin:auto; /* centers the main container horizontally */
+main {
+  flex: 1; /* fills space between header + footer */
+  padding: 1rem 2rem;
+  max-width: 1600px;
+  margin: auto; /* center content */
 }
-
-
 
 /* ===============================
    (CARD LAYOUT)
    =============================== */
-
 .whatwedo {
-  display: flex; /* enables flexbox layout */
-  justify-content: flex-end; /* aligns items to the right */
-  gap: 2rem; /* space between child elements */
-  margin: 2rem auto; /* centers section and adds vertical spacing */
-  margin-top: 0.5rem; /* reduces space above this section */
-  padding: 2rem; /* space inside the container */
-  max-width: 1000px; /* limits how wide the section can grow */
-  width: 90%; /* keeps spacing on left and right sides */
-  flex-wrap: wrap; /* allows items to stack on smaller screens */
-  border-radius: 12px; /* rounds the edges of the container */
-}
-.whatwedo .card-base::before,
-.whatwedo .card-base::after {
-  display: none;
-}
-.whatwedo .card-base {
-  margin-right: 8%;
-  margin-left: auto;
-
-}
-.whatwedo .card {
-  max-width: 600px;
-  color: #263459; /* your dark blue */
-  max-width: 600px;
-  color: #263459; /* your dark blue */
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-/* ===============================
-   REUSABLE SECTION LAYOUT
-   =============================== */
-
-.section-column {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.whatwedo .card {
+  max-width: 1000px;
+}
+
+.services {
+  /* Makes the paragraph and card sit next to each other */
+  display: flex;
+
+  /* Pushes everything toward the right side */
+  justify-content: flex-end;
+
+  /* Space between the paragraph and the card */
   gap: 2rem;
+
+  /* Space above this section */
   margin-top: 2rem;
+
+  /* Allows the layout to wrap on smaller screens */
+  flex-wrap: wrap;
 }
 
-/* ===============================
-   BASE CARD STYLE (USED EVERYWHERE)
-   =============================== */
+/* The services card needs position:relative because the
+   animated background (::before) is positioned absolutely.
+   Without this, the background would be positioned relative
+   to the page instead of the card. */
 
-.card-base {
+.services-card {
   position: relative;
+
+  /* Makes text readable over the dark overlay */
   color: white;
+
+  /* Keeps the slideshow inside the card */
   overflow: hidden;
-  width: 75%;
-  max-width: 900px;
+
+  /* Pushes the card to the right */
+  margin-left: auto;
 }
 
-/* ===============================
-   CARD BACKGROUND + OVERLAY (ONE TIME)
-   =============================== */
-
-.card-base::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  animation: bgSlide 15s infinite;
-  z-index: 0;
+/* Allows the paragraph to grow and fill available space */
+.services-paragraph {
+  flex: 1;
 }
+.service-title {
+  width: 140px;
+  text-align: center;
+  line-height: 1.3;
 
-.card-base::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 1;
+  /* This centers the text beside the town list */
+  align-self: center;
 }
-
-.card-base * {
+.services-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  height: 100%;
+}
+.services-card * {
   position: relative;
   z-index: 2;
 }
+.contact {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
 
-/* ===============================
-   LEFT / RIGHT ALIGNMENT
-   =============================== */
-
-.align-left {
-  margin-left: 5%;
+.contact-card {
   margin-right: auto;
 }
 
-.align-right {
-  margin-right: 5%;
-  margin-left: auto;
+.contact-content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
 }
 
-/* ===============================
-   SPECIFIC SECTIONS (NOW LIGHT)
-   =============================== */
+.contact-form {
+  flex: 1;
+}
 
-.services {}
-.contact {}
-.location {}
-.portfolio {}
+.location {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 4rem;
+}
+.location-card {
+  width: 80%;
+  max-width: 1100px;
+}
+.location-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.city-list {
+  flex: 1;
+}
+.city-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.city-list li {
+  margin-bottom: 12px;
+}
+.map-container {
+  flex: 2;
+}
+.map-container iframe {
+  width: 100%;
+  height: 260px;
+  border: none;
+  border-radius: 12px;
+}
 
-/* ===============================
-   BACKGROUND ANIMATION
-   =============================== */
+.portfolio {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
 
-@keyframes bgSlide {
-  0% {
-    background-image: url("https://i.etsystatic.com/8520095/r/il/9abeb6/943018642/il_1588xN.943018642_e6nv.jpg");
-  }
-  33% {
-    background-image: url("https://i.pinimg.com/originals/f0/91/8f/f0918f37ec39e85400f1d2dc27b97a3e.png");
-  }
-  66% {
-    background-image: url("https://i.pinimg.com/736x/af/eb/a3/afeba3a638cf271ce06d4eb5a8909ee6.jpg");
-  }
-  100% {
-    background-image: url("https://i.etsystatic.com/8520095/r/il/9abeb6/943018642/il_1588xN.943018642_e6nv.jpg");
-  }
+.portfolio-content {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+
+  padding: 2rem;
+}
+.portfolio-card {
+  position: relative;
+  color: white;
+  overflow: hidden;
+}
+
+.whatwedo,
+.services,
+.contact,
+.portfolio {
+  margin-bottom: 4rem;
 }
 /* ===============================
    CARD (MAIN BOX COMPONENT)
    =============================== */
+/* ===============================
+   UNIVERSAL BACKGROUND SLIDESHOW
+   Works for EVERY card
+   =============================== */
+.background-slideshow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+/* Every slideshow image fills the card */
+.bg-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.8s ease-in-out;
+  transform: scale(1);
+}
+/* Only one image is visible */
+.bg-slide.active {
+  opacity: 1;
+  animation: zoom 8s linear;
+}
+.services-card::after,
+.portfolio-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 
-.card{
-  background:white; /* card background color */
-  border-radius:8px; /* rounded corners */
-  border-top:4px solid var(--accent); /* colored top border */
-  box-shadow:0 2px 8px rgba(0,0,0,.08); /* subtle shadow */
-  padding:3rem; /* space inside card */
-  flex: 1; /* allows cards to expand equally */
-  min-width:268px; /* prevents cards from shrinking too small */
-  display:flex; /* flex layout */
-  flex-direction: column; /* stack content vertically */
-  gap:.4rem; /* spacing between elements */
-  transition:.25s; /* smooth hover animation */
+  background: rgba(0, 0, 0, 0.45);
+
+  z-index: 1;
+}
+/* ===============================
+   BACKGROUND STAYS BEHIND CONTENT
+   =============================== */
+
+.background-slideshow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.services-content,
+.portfolio-content {
+  position: relative;
+  z-index: 2;
+}
+/* Slow zoom */
+@keyframes zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+.services-card,
+.contact-card,
+.location-card,
+.portfolio-card {
+  background: transparent;
+  padding: 0;
+}
+.services-content,
+.contact-content,
+.location-content,
+.portfolio-content {
+  padding: 3rem;
+}
+.card {
+  border-radius: 16px;
+  border-top: 4px solid var(--accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  width: 90%;
+  max-width: 1400px;
+  min-height: 380px;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: 0.25s;
 }
 
 /* hover lift effect */
-.card:hover{
-  transform:translateY(-5px); /* moves card up slightly */
-  box-shadow:0 6px 18px rgba(0,0,0,.12); /* stronger shadow on hover */
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
-.card p{
-  line-height:1.5rem; /* spacing between lines */
+.card p {
+  line-height: 1.5rem;
 }
 
-.card h3{
-  text-align:center; /* centers heading */
+.card h3 {
+  text-align: center;
 }
 
-.card h4{
-  margin:0; /* removes default margin */
-  text-align:center; /* centers text */
-  color:var(--accent); /* uses accent color */
+.card h4 {
+  margin: 0;
+  text-align: center;
+  color: var(--accent);
 }
 
 /* inputs inside cards */
 .card input,
-.card textarea{
-  width:100%; /* full width inputs */
+.card textarea {
+  width: 100%;
 }
 
-.card textarea{
-  resize:none; /* prevents resizing */
+.card textarea {
+  resize: none;
 }
 
 /* ===============================
    BUTTON
    =============================== */
 
-.SeeMore-btn{
-  display:inline-block; /* allows padding/margin */
-  margin-top:auto; /* pushes button to bottom */
-  padding:.7rem 1.2rem; /* space inside button */
-  color:white; /* text color */
-  text-decoration:none; /* removes underline */
-  border-radius:8px; /* rounded corners */
-  font-weight:600; /* semi-bold text */
-  font-size:.95rem; /* text size */
-  transition:.3s; /* smooth hover effect */
+.SeeMore-btn {
+  position: relative;
+  z-index: 3;
+
+  display: inline-block;
+  margin-top: auto;
+
+  padding: 0.7rem 1.2rem;
+  background: var(--accent);
+  color: white;
+
+  text-decoration: none;
+  border-radius: 8px;
+
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: 0.3s;
 }
 
 /* hover animation */
-.SeeMore-btn:hover{
-  background:#a86514; /* darker color on hover */
-  transform:scale(1.05); /* slightly enlarges button */
+.SeeMore-btn:hover {
+  background: var(--accent);
+  transform: scale(1.05);
 }
 
 /* ===============================
-   LOCATION CARD (TWO COLUMN LIST)
+   IMAGE SLIDER
    =============================== */
-.location-card ul {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem 2rem;
+
+.slider {
+  position: relative;
+  overflow: hidden; /* hides extra images */
 }
+
+/* track that moves */
+.slides {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+/* each image */
+.slide {
+  flex-shrink: 0;
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  margin: auto;
+}
+
+/* ===============================
+   SLIDER BUTTONS
+   =============================== */
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+
+  border: none;
+  font-size: 22px;
+  padding: 0.4rem 0.8rem;
+
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.prev {
+  left: 10px;
+}
+.next {
+  right: 10px;
+}
+
 /* ===============================
    FOOTER
    =============================== */
 
-footer{
-  background:var(--header-bg); /* uses same color as header */
-  color:white; /* text color */
-  text-align:center; /* centers footer text */
-  padding:1rem; /* space inside footer */
-  font-size:.9rem; /* slightly smaller text */
-  margin-top:4rem; /* space above footer */
+footer {
+  background: var(--header-bg);
+  color: white;
+  text-align: center;
+
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: 4rem;
 }
 
 /* ===============================
    MOBILE (RESPONSIVE DESIGN)
    =============================== */
 
-@media (max-width:760px){
+@media (max-width: 760px) {
   /* stack cards instead of side-by-side */
-  .services{
-    flex-direction:column; /* forces vertical stacking */
-    align-items:center; /* centers cards horizontally */
+  .services {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .card{
-    width:90%; /* makes cards take most of screen width */
+  .card {
+    width: 90%;
   }
 }
 
@@ -479,38 +531,38 @@ footer{
    =============================== */
 
 /* project type layout */
-.projectType{
-  display:flex; /* flex layout */
-  justify-content:center; /* centers items horizontally */
-  gap:2rem; /* space between items */
-  margin-top:2rem; /* space above section */
-  flex-wrap:wrap; /* allows wrapping on smaller screens */
+.projectType {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
 }
 
 /* image grid */
-.gallery{
-  display:grid; /* grid layout */
-  grid-template-columns:repeat(2,1fr); /* 2 equal columns */
-  gap:10px; /* space between images */
-  margin-top:10px; /* space above gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.gallery img{
-  width:100%; /* makes images fill grid cell */
-  border-radius:6px; /* rounded corners */
-  height:150px; /* fixed height */
-  object-fit:cover; /* prevents distortion, crops instead */
+.gallery img {
+  width: 100%;
+  border-radius: 6px;
+  height: 150px;
+  object-fit: cover;
 }
 
 /* slider container */
-#projectGallery{
-  margin-top:1rem; /* space above slider */
-  max-width:400px; /* limits width */
+#projectGallery {
+  margin-top: 1rem;
+  max-width: 400px;
 }
 
 /* slider images */
-#projectGallery .slide{
-  width:100%; /* full width */
-  height:220px; /* fixed height */
-  object-fit:cover; /* keeps images proportional */
+#projectGallery .slide {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
 }
